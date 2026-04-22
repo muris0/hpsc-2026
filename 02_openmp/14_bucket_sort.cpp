@@ -18,6 +18,8 @@ int main() {
   std::vector<int> offset(range,0);
   for (int i=1; i<range; i++) 
     offset[i] = offset[i-1] + bucket[i-1];
+// parallelize the loop below
+#pragma omp parallel for
   for (int i=0; i<range; i++) {
     int j = offset[i];
     for (; bucket[i]>0; bucket[i]--) {
